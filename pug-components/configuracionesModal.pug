@@ -1,0 +1,41 @@
+-var titulo1 = 'Modal 1 opción'
+-var titulo2 = 'Modal 2 opciones'
+-var titulo3 = 'Modal 3 opciones'
+-var titulo4 = 'Modal 4 opciones'
+-var texto1 = 'Lorem ipsum dolor sit amet.'
+-var texto2 = 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem.'
+-var texto3 = 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.'
+-var texto4 = 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.'
+-var botones1 = ['Aceptar']
+-var botones2 = ['Aceptar', 'Cancelar']
+-var botones3 = ['Aceptar', 'Ver mas', 'Cancelar']
+-var botones4 = ['Ok', 'Información', 'Salir']
+
+
+mixin ModalButton(text)
+    button(class!=attributes.class) #{text}
+
+
+mixin Modal(title, text, buttons, linkInfo, line)
+    div(class!=attributes.class)
+        .modal 
+            i.fa-solid.fa-xmark.modal__close
+            .modal__information 
+                h3.modal__title=title
+                p.modal__text=text 
+            .modal__options 
+                if line == 'l'
+                    .modal__line
+                .modal__buttons 
+                    if buttons.length == 3
+                        a(href="#").modal__button.modal__ok #{buttons[0]}
+                        if linkInfo
+                            a(href=linkInfo, target="_blank").modal__button.modal__info #{buttons[1]}
+                        else
+                            a(href="#").modal__button.modal__info #{buttons[1]}
+                        a(href="#").modal__button.modal__cancel #{buttons[2]}
+                    else if buttons.length == 2
+                        a(href="#").modal__button.modal__ok #{buttons[0]}
+                        a(href="#").modal__button.modal__cancel #{buttons[1]}
+                    else 
+                        a(href="#").modal__button.modal__ok #{buttons[0]}
